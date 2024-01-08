@@ -3,13 +3,15 @@ import dotenv from "dotenv";
 import connecttoMongo from "./components/connecttomongo";
 import router from "./routes/index";
 import bodyParser from "body-parser";
+import { error } from "./middleware/errorhandler";
 
 dotenv.config();
 
 const App=express();
 const port=process.env.PORT!;
-//routes and imports from other packages
+//routes, imports from other packages and error handellers
 App.use(bodyParser.json());
+App.use(error)
 App.use("/api",router);
 
 
